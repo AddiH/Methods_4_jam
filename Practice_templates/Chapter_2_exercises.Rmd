@@ -3,6 +3,10 @@ title: "Astrid"
 output: html_notebook
 ---
 
+```{r}
+
+```
+
 # Easy.
 ## 2E1. 
 Which of the expressions below correspond to the statement: the probability of rain on Monday?
@@ -11,12 +15,17 @@ Which of the expressions below correspond to the statement: the probability of r
 (3) Pr(Monday|rain)
 (4) Pr(rain, Monday)/ Pr(Monday)
 
+> 2 is "probability of rain given Monday"
+> 4 is "probaility of rain and Monday" divided by "probability of Monday" which is equivalent
+
 ## 2E2.
 Which of the following statements corresponds to the expression: Pr(Monday|rain)?
 (1) The probability of rain on Monday.
 (2) The probability of rain, given that it is Monday.
 (3) The probability that it is Monday, given that it is raining.
 (4) The probability that it is Monday and that it is raining.
+
+> 3
 
 ## 2E3. 
 Which of the expressions below correspond to the statement: the probability that it is Monday,
@@ -27,10 +36,14 @@ given that it is raining?
 (4) Pr(rain|Monday) Pr(Monday)/ Pr(rain)
 (5) Pr(Monday|rain) Pr(rain)/ Pr(Monday)
 
+> 1 and 4
+
 ## 2E4. 
 The Bayesian statistician Bruno de Finetti (1906–1985) began his book on probability theory
 with the declaration: “PROBABILITY DOES NOT EXIST.” The capitals appeared in the original, so
 I imagine de Finetti wanted us to shout this statement. What he meant is that probability is a device for describing uncertainty from the perspective of an observer with limited knowledge; it has no objective reality. Discuss the globe tossing example from the chapter, in light of this statement. What does it mean to say “the probability of water is 0.7”?
+
+> There is a true proportion of water on earth. The probability refers to our best guess on how much water on earth but this is just a guess and not the actual proportion of water.
 
 # Medium.
 ## 2M1. 
@@ -38,8 +51,47 @@ Recall the globe tossing model from the chapter. Compute and plot the grid appro
 posterior distribution for each of the following sets of observations. In each case, assume a uniform
 prior for p.
 (1) W, W, W
+
+```{r}
+# making a thousand numbers evenly spaced from 0 to 1
+p_grid <- seq( from=0 , to=1 , length.out=1000 )
+# making the prior - they are all 1
+prob_p <- rep( 1 , 1000 )
+# using binomial sampling formula, number of water samples, total samples and the p_grid
+prob_data <- dbinom( 3 , size=3 , prob=p_grid )
+# multiplying the prior and the sample to get posterior
+posterior <- prob_data * prob_p
+# normalize to make it into a porbability distribution
+posterior <- posterior / sum(posterior)
+# plotting
+plot( p_grid , posterior , type="b" ,
+    xlab="probability of water" , ylab="posterior probability" )
+```
+
+
 (2) W, W, W, L
+
+```{r}
+p_grid <- seq( from=0 , to=1 , length.out=1000 )
+prob_p <- rep( 1 , 1000 )
+prob_data <- dbinom( 3 , size=4 , prob=p_grid )
+posterior <- prob_data * prob_p
+posterior <- posterior / sum(posterior)
+plot( p_grid , posterior , type="b" ,
+    xlab="probability of water" , ylab="posterior probability" )
+```
+
 (3) L, W, W, L, W, W, W
+
+```{r}
+p_grid <- seq( from=0 , to=1 , length.out=1000 )
+prob_p <- rep( 1 , 1000 )
+prob_data <- dbinom( 5 , size=7 , prob=p_grid )
+posterior <- prob_data * prob_p
+posterior <- posterior / sum(posterior)
+plot( p_grid , posterior , type="b" ,
+    xlab="probability of water" , ylab="posterior probability" )
+```
 
 ## 2M2. 
 Now assume a prior for p that is equal to zero when p < 0.5 and is a positive constant when
