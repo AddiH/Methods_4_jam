@@ -1,5 +1,5 @@
 ---
-title: "Chapter 2 practices"
+title: "Astrid"
 output: html_notebook
 ---
 
