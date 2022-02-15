@@ -61,7 +61,7 @@ prob_p <- rep( 1 , 1000 )
 prob_data <- dbinom( 3 , size=3 , prob=p_grid )
 # multiplying the prior and the sample to get posterior
 posterior <- prob_data * prob_p
-# normalize to make it into a porbability distribution
+# normalize to make it into a probability distribution
 posterior <- posterior / sum(posterior)
 # plotting
 plot( p_grid , posterior , type="b" ,
