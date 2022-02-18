@@ -225,30 +225,90 @@ pre code {
 <p>##4M3. Translate the quap model formula below into a mathematical model definition.</p>
 <!-- rnb-text-end -->
 <!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuZmxpc3QgPC0gYWxpc3QoXG55IH4gZG5vcm0oIG11ICwgc2lnbWEgKSxcbm11IDwtIGEgKyBiKngsXG5hIH4gZG5vcm0oIDAgLCAxMCApLFxuYiB+IGR1bmlmKCAwICwgMSApLFxuc2lnbWEgfiBkZXhwKCAxIClcbilcbmBgYCJ9 -->
-<pre class="r"><code>flist &lt;- alist(
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxuZmxpc3QgPC0gYWxpc3QoXG55IH4gZG5vcm0oIG11ICwgc2lnbWEgKSxcbm11IDwtIGEgKyBiKngsXG5hIH4gZG5vcm0oIDAgLCAxMCApLFxuYiB+IGR1bmlmKCAwICwgMSApLFxuc2lnbWEgfiBkZXhwKCAxIClcbilcbmBgYFxuYGBgIn0= -->
+<pre class="r"><code>```r
+flist &lt;- alist(
 y ~ dnorm( mu , sigma ),
 mu &lt;- a + b*x,
 a ~ dnorm( 0 , 10 ),
 b ~ dunif( 0 , 1 ),
 sigma ~ dexp( 1 )
 )</code></pre>
-<!-- rnb-source-end -->
-<!-- rnb-chunk-end -->
-<!-- rnb-text-begin -->
-<p>##4M4. A sample of students is measured for height each year for 3 years. After the third year, you want to fit a linear regression predicting height using year as a predictor. Write down the mathematical model definition for this regression, using any variable names and priors you choose. Be prepared to defend your choice of priors.</p>
-<p>##4M5. Now suppose I remind you that every student got taller each year. Does this information lead you to change your choice of priors? How?</p>
-<p>##4M6. Now suppose I tell you that the variance among heights for students of the same age is never more than 64cm. How does this lead you to revise your priors?</p>
-<p>#Hard. ##4H1. The weights listed below were recorded in the !Kung census, but heights were not recorded for these individuals. Provide predicted heights and 89% intervals for each of these individuals. That is, fill in the table below, using model-based predictions. (see pic on pg. 124)</p>
-<p>##4H2. Select out all the rows in the Howell1 data with ages below 18 years of age. If you do it right, you should end up with a new data frame with 192 rows in it. (a) Fit a linear regression to these data, using quap. Present and interpret the estimates. For every 10 units of increase in weight, how much taller does the model predict a child gets? (b) Plot the raw data, with height on the vertical axis and weight on the horizontal axis. Superimpose the MAP regression line and 89% interval for the mean. Also superimpose the 89% interval for predicted heights. (c) What aspects of the model fit concern you? Describe the kinds of assumptions you would change, if any, to improve the model. You don’t have to write any new code. Just explain what the model appears to be doing a bad job of, and what you hypothesize would be a better model.</p>
-<p>##4H3. Suppose a colleague of yours, who works on allometry, glances at the practice problems just above. Your colleague exclaims, “That’s silly. Everyone knows that it’s only the logarithm of body weight that scales with height!” Let’s take your colleague’s advice and see what happens. (a) Model the relationship between height (cm) and the natural logarithm of weight (log-kg). Use the entire Howell1 data frame, all 544 rows, adults and non-adults. Fit this model, using quadratic approximation:</p>
-<p><span class="math display">\[hi ∼ Normal(μi, σ)\]</span> <span class="math display">\[μi = α + β log(wi)\]</span> <span class="math display">\[α ∼ Normal(178, 20)\]</span> <span class="math display">\[β ∼ Log − Normal(0, 1)\]</span> <span class="math display">\[σ ∼ Uniform(0, 50)\]</span></p>
-<p>where hi is the height of individual i and wi is the weight (in kg) of individual i. The function for computing a natural log in R is just log. Can you interpret the resulting estimates? (b) Begin with this plot:</p>
-<!-- rnb-text-end -->
-<!-- rnb-chunk-begin -->
-<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxucGxvdCggaGVpZ2h0IH4gd2VpZ2h0ICwgZGF0YT1Ib3dlbGwxICxcbmNvbD1jb2wuYWxwaGEocmFuZ2kyLDAuNCkgKVxuYGBgIn0= -->
-<pre class="r"><code>plot( height ~ weight , data=Howell1 ,
+<pre><code>
+&lt;!-- rnb-source-end --&gt;
+
+&lt;!-- rnb-chunk-end --&gt;
+
+
+&lt;!-- rnb-text-begin --&gt;
+
+
+##4M4. 
+A sample of students is measured for height each year for 3 years. After the third year, you want
+to fit a linear regression predicting height using year as a predictor. Write down the mathematical
+model definition for this regression, using any variable names and priors you choose. Be prepared to
+defend your choice of priors.
+
+##4M5. 
+Now suppose I remind you that every student got taller each year. Does this information lead
+you to change your choice of priors? How?
+
+##4M6. 
+Now suppose I tell you that the variance among heights for students of the same age is never
+more than 64cm. How does this lead you to revise your priors?
+
+#Hard.
+##4H1. 
+The weights listed below were recorded in the !Kung census, but heights were not recorded for
+these individuals. Provide predicted heights and 89% intervals for each of these individuals. That is,
+fill in the table below, using model-based predictions.
+(see pic on pg. 124)
+
+##4H2. 
+Select out all the rows in the Howell1 data with ages below 18 years of age. If you do it right,
+you should end up with a new data frame with 192 rows in it.
+(a) Fit a linear regression to these data, using quap. Present and interpret the estimates. For
+every 10 units of increase in weight, how much taller does the model predict a child gets?
+(b) Plot the raw data, with height on the vertical axis and weight on the horizontal axis. Superimpose
+the MAP regression line and 89% interval for the mean. Also superimpose the 89% interval
+for predicted heights.
+(c) What aspects of the model fit concern you? Describe the kinds of assumptions you would
+change, if any, to improve the model. You don’t have to write any new code. Just explain what the
+model appears to be doing a bad job of, and what you hypothesize would be a better model.
+
+##4H3. 
+Suppose a colleague of yours, who works on allometry, glances at the practice problems just
+above. Your colleague exclaims, “That’s silly. Everyone knows that it’s only the logarithm of body
+weight that scales with height!” Let’s take your colleague’s advice and see what happens.
+(a) Model the relationship between height (cm) and the natural logarithm of weight (log-kg). Use
+the entire Howell1 data frame, all 544 rows, adults and non-adults. Fit this model, using quadratic
+approximation:
+
+$$hi ∼ Normal(μi, σ)$$
+$$μi = α + β log(wi)$$
+$$α ∼ Normal(178, 20)$$
+$$β ∼ Log − Normal(0, 1)$$
+$$σ ∼ Uniform(0, 50)$$
+
+where hi is the height of individual i and wi is the weight (in kg) of individual i. The function for
+computing a natural log in R is just log. Can you interpret the resulting estimates?
+(b) Begin with this plot:
+
+
+
+&lt;!-- rnb-text-end --&gt;
+
+
+&lt;!-- rnb-chunk-begin --&gt;
+
+
+&lt;!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuYGBgclxucGxvdCggaGVpZ2h0IH4gd2VpZ2h0ICwgZGF0YT1Ib3dlbGwxICxcbmNvbD1jb2wuYWxwaGEocmFuZ2kyLDAuNCkgKVxuYGBgXG5gYGAifQ== --&gt;
+
+```r
+```r
+plot( height ~ weight , data=Howell1 ,
 col=col.alpha(rangi2,0.4) )</code></pre>
+<p>```</p>
 <!-- rnb-source-end -->
 <!-- rnb-chunk-end -->
 <!-- rnb-text-begin -->
@@ -256,7 +316,7 @@ col=col.alpha(rangi2,0.4) )</code></pre>
 <p>##4H4. Plot the prior predictive distribution for the polynomial regression model in the chapter. You can modify the code that plots the linear regression prior predictive distribution. Can you modify the prior distributions of α, β1, and β2 so that the prior predictions stay within the biologically reasonable outcome space? That is to say: Do not try to fit the data by hand. But do try to keep the curves consistent with what you know about height and weight, before seeing these exact data.</p>
 <!-- rnb-text-end -->
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ2hhcHRlciA0IHByYWN0aWNlcyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKCgojRWFzeS4KIyM0RTEuIApJbiB0aGUgbW9kZWwgZGVmaW5pdGlvbiBiZWxvdywgd2hpY2ggbGluZSBpcyB0aGUgbGlrZWxpaG9vZD8KJCR5aSDiiLwgTm9ybWFsKM68LCDPgykkJAokJM68IOKIvCBOb3JtYWwoMCwgMTApJCQKJCTPgyDiiLwgRXhwb25lbnRpYWwoMSkkJAoKIyM0RTIuIApJbiB0aGUgbW9kZWwgZGVmaW5pdGlvbiBqdXN0IGFib3ZlLCBob3cgbWFueSBwYXJhbWV0ZXJzIGFyZSBpbiB0aGUgcG9zdGVyaW9yIGRpc3RyaWJ1dGlvbj8KCiMjNEUzLiAKVXNpbmcgdGhlIG1vZGVsIGRlZmluaXRpb24gYWJvdmUsIHdyaXRlIGRvd24gdGhlIGFwcHJvcHJpYXRlIGZvcm0gb2YgQmF5ZXPigJkgdGhlb3JlbSB0aGF0CmluY2x1ZGVzIHRoZSBwcm9wZXIgbGlrZWxpaG9vZCBhbmQgcHJpb3JzLgoKIyM0RTQuIApJbiB0aGUgbW9kZWwgZGVmaW5pdGlvbiBiZWxvdywgd2hpY2ggbGluZSBpcyB0aGUgbGluZWFyIG1vZGVsPwokJHlpIOKIvCBOb3JtYWwozrwsIM+DKSQkCiQkzrxpID0gzrEgKyDOsnhpJCQKJCTOsSDiiLwgTm9ybWFsKDAsIDEwKSQkCiQkzrIg4oi8IE5vcm1hbCgwLCAxKSQkCiQkz4Mg4oi8IEV4cG9uZW50aWFsKDIpJCQKCiMjNEU1LiAKSW4gdGhlIG1vZGVsIGRlZmluaXRpb24ganVzdCBhYm92ZSwgaG93IG1hbnkgcGFyYW1ldGVycyBhcmUgaW4gdGhlIHBvc3RlcmlvciBkaXN0cmlidXRpb24/CgojTWVkaXVtLgojIzRNMS4gCkZvciB0aGUgbW9kZWwgZGVmaW5pdGlvbiBiZWxvdywgc2ltdWxhdGUgb2JzZXJ2ZWQgeSB2YWx1ZXMgZnJvbSB0aGUgcHJpb3IgKG5vdCB0aGUgcG9zdGVyaW9yKS4KJCR5aSDiiLwgTm9ybWFsKM68LCDPgykkJAokJM68IOKIvCBOb3JtYWwoMCwgMTApJCQKJCTPgyDiiLwgRXhwb25lbnRpYWwoMSkkJAoKIyM0TTIuIApUcmFuc2xhdGUgdGhlIG1vZGVsIGp1c3QgYWJvdmUgaW50byBhIHF1YXAgZm9ybXVsYS4KCiMjNE0zLiAKVHJhbnNsYXRlIHRoZSBxdWFwIG1vZGVsIGZvcm11bGEgYmVsb3cgaW50byBhIG1hdGhlbWF0aWNhbCBtb2RlbCBkZWZpbml0aW9uLgpgYGB7cn0KZmxpc3QgPC0gYWxpc3QoCnkgfiBkbm9ybSggbXUgLCBzaWdtYSApLAptdSA8LSBhICsgYip4LAphIH4gZG5vcm0oIDAgLCAxMCApLApiIH4gZHVuaWYoIDAgLCAxICksCnNpZ21hIH4gZGV4cCggMSApCikKYGBgCgojIzRNNC4gCkEgc2FtcGxlIG9mIHN0dWRlbnRzIGlzIG1lYXN1cmVkIGZvciBoZWlnaHQgZWFjaCB5ZWFyIGZvciAzIHllYXJzLiBBZnRlciB0aGUgdGhpcmQgeWVhciwgeW91IHdhbnQKdG8gZml0IGEgbGluZWFyIHJlZ3Jlc3Npb24gcHJlZGljdGluZyBoZWlnaHQgdXNpbmcgeWVhciBhcyBhIHByZWRpY3Rvci4gV3JpdGUgZG93biB0aGUgbWF0aGVtYXRpY2FsCm1vZGVsIGRlZmluaXRpb24gZm9yIHRoaXMgcmVncmVzc2lvbiwgdXNpbmcgYW55IHZhcmlhYmxlIG5hbWVzIGFuZCBwcmlvcnMgeW91IGNob29zZS4gQmUgcHJlcGFyZWQgdG8KZGVmZW5kIHlvdXIgY2hvaWNlIG9mIHByaW9ycy4KCiMjNE01LiAKTm93IHN1cHBvc2UgSSByZW1pbmQgeW91IHRoYXQgZXZlcnkgc3R1ZGVudCBnb3QgdGFsbGVyIGVhY2ggeWVhci4gRG9lcyB0aGlzIGluZm9ybWF0aW9uIGxlYWQKeW91IHRvIGNoYW5nZSB5b3VyIGNob2ljZSBvZiBwcmlvcnM/IEhvdz8KCiMjNE02LiAKTm93IHN1cHBvc2UgSSB0ZWxsIHlvdSB0aGF0IHRoZSB2YXJpYW5jZSBhbW9uZyBoZWlnaHRzIGZvciBzdHVkZW50cyBvZiB0aGUgc2FtZSBhZ2UgaXMgbmV2ZXIKbW9yZSB0aGFuIDY0Y20uIEhvdyBkb2VzIHRoaXMgbGVhZCB5b3UgdG8gcmV2aXNlIHlvdXIgcHJpb3JzPwoKI0hhcmQuCiMjNEgxLiAKVGhlIHdlaWdodHMgbGlzdGVkIGJlbG93IHdlcmUgcmVjb3JkZWQgaW4gdGhlICFLdW5nIGNlbnN1cywgYnV0IGhlaWdodHMgd2VyZSBub3QgcmVjb3JkZWQgZm9yCnRoZXNlIGluZGl2aWR1YWxzLiBQcm92aWRlIHByZWRpY3RlZCBoZWlnaHRzIGFuZCA4OSUgaW50ZXJ2YWxzIGZvciBlYWNoIG9mIHRoZXNlIGluZGl2aWR1YWxzLiBUaGF0IGlzLApmaWxsIGluIHRoZSB0YWJsZSBiZWxvdywgdXNpbmcgbW9kZWwtYmFzZWQgcHJlZGljdGlvbnMuCihzZWUgcGljIG9uIHBnLiAxMjQpCgojIzRIMi4gClNlbGVjdCBvdXQgYWxsIHRoZSByb3dzIGluIHRoZSBIb3dlbGwxIGRhdGEgd2l0aCBhZ2VzIGJlbG93IDE4IHllYXJzIG9mIGFnZS4gSWYgeW91IGRvIGl0IHJpZ2h0LAp5b3Ugc2hvdWxkIGVuZCB1cCB3aXRoIGEgbmV3IGRhdGEgZnJhbWUgd2l0aCAxOTIgcm93cyBpbiBpdC4KKGEpIEZpdCBhIGxpbmVhciByZWdyZXNzaW9uIHRvIHRoZXNlIGRhdGEsIHVzaW5nIHF1YXAuIFByZXNlbnQgYW5kIGludGVycHJldCB0aGUgZXN0aW1hdGVzLiBGb3IKZXZlcnkgMTAgdW5pdHMgb2YgaW5jcmVhc2UgaW4gd2VpZ2h0LCBob3cgbXVjaCB0YWxsZXIgZG9lcyB0aGUgbW9kZWwgcHJlZGljdCBhIGNoaWxkIGdldHM/CihiKSBQbG90IHRoZSByYXcgZGF0YSwgd2l0aCBoZWlnaHQgb24gdGhlIHZlcnRpY2FsIGF4aXMgYW5kIHdlaWdodCBvbiB0aGUgaG9yaXpvbnRhbCBheGlzLiBTdXBlcmltcG9zZQp0aGUgTUFQIHJlZ3Jlc3Npb24gbGluZSBhbmQgODklIGludGVydmFsIGZvciB0aGUgbWVhbi4gQWxzbyBzdXBlcmltcG9zZSB0aGUgODklIGludGVydmFsCmZvciBwcmVkaWN0ZWQgaGVpZ2h0cy4KKGMpIFdoYXQgYXNwZWN0cyBvZiB0aGUgbW9kZWwgZml0IGNvbmNlcm4geW91PyBEZXNjcmliZSB0aGUga2luZHMgb2YgYXNzdW1wdGlvbnMgeW91IHdvdWxkCmNoYW5nZSwgaWYgYW55LCB0byBpbXByb3ZlIHRoZSBtb2RlbC4gWW91IGRvbuKAmXQgaGF2ZSB0byB3cml0ZSBhbnkgbmV3IGNvZGUuIEp1c3QgZXhwbGFpbiB3aGF0IHRoZQptb2RlbCBhcHBlYXJzIHRvIGJlIGRvaW5nIGEgYmFkIGpvYiBvZiwgYW5kIHdoYXQgeW91IGh5cG90aGVzaXplIHdvdWxkIGJlIGEgYmV0dGVyIG1vZGVsLgoKIyM0SDMuIApTdXBwb3NlIGEgY29sbGVhZ3VlIG9mIHlvdXJzLCB3aG8gd29ya3Mgb24gYWxsb21ldHJ5LCBnbGFuY2VzIGF0IHRoZSBwcmFjdGljZSBwcm9ibGVtcyBqdXN0CmFib3ZlLiBZb3VyIGNvbGxlYWd1ZSBleGNsYWltcywg4oCcVGhhdOKAmXMgc2lsbHkuIEV2ZXJ5b25lIGtub3dzIHRoYXQgaXTigJlzIG9ubHkgdGhlIGxvZ2FyaXRobSBvZiBib2R5CndlaWdodCB0aGF0IHNjYWxlcyB3aXRoIGhlaWdodCHigJ0gTGV04oCZcyB0YWtlIHlvdXIgY29sbGVhZ3Vl4oCZcyBhZHZpY2UgYW5kIHNlZSB3aGF0IGhhcHBlbnMuCihhKSBNb2RlbCB0aGUgcmVsYXRpb25zaGlwIGJldHdlZW4gaGVpZ2h0IChjbSkgYW5kIHRoZSBuYXR1cmFsIGxvZ2FyaXRobSBvZiB3ZWlnaHQgKGxvZy1rZykuIFVzZQp0aGUgZW50aXJlIEhvd2VsbDEgZGF0YSBmcmFtZSwgYWxsIDU0NCByb3dzLCBhZHVsdHMgYW5kIG5vbi1hZHVsdHMuIEZpdCB0aGlzIG1vZGVsLCB1c2luZyBxdWFkcmF0aWMKYXBwcm94aW1hdGlvbjoKCiQkaGkg4oi8IE5vcm1hbCjOvGksIM+DKSQkCiQkzrxpID0gzrEgKyDOsiBsb2cod2kpJCQKJCTOsSDiiLwgTm9ybWFsKDE3OCwgMjApJCQKJCTOsiDiiLwgTG9nIOKIkiBOb3JtYWwoMCwgMSkkJAokJM+DIOKIvCBVbmlmb3JtKDAsIDUwKSQkCgp3aGVyZSBoaSBpcyB0aGUgaGVpZ2h0IG9mIGluZGl2aWR1YWwgaSBhbmQgd2kgaXMgdGhlIHdlaWdodCAoaW4ga2cpIG9mIGluZGl2aWR1YWwgaS4gVGhlIGZ1bmN0aW9uIGZvcgpjb21wdXRpbmcgYSBuYXR1cmFsIGxvZyBpbiBSIGlzIGp1c3QgbG9nLiBDYW4geW91IGludGVycHJldCB0aGUgcmVzdWx0aW5nIGVzdGltYXRlcz8KKGIpIEJlZ2luIHdpdGggdGhpcyBwbG90OgoKCmBgYHtyfQpwbG90KCBoZWlnaHQgfiB3ZWlnaHQgLCBkYXRhPUhvd2VsbDEgLApjb2w9Y29sLmFscGhhKHJhbmdpMiwwLjQpICkKYGBgCgpUaGVuIHVzZSBzYW1wbGVzIGZyb20gdGhlIHF1YWRyYXRpYyBhcHByb3hpbWF0ZSBwb3N0ZXJpb3Igb2YgdGhlIG1vZGVsIGluIChhKSB0byBzdXBlcmltcG9zZSBvbgp0aGUgcGxvdDogKDEpIHRoZSBwcmVkaWN0ZWQgbWVhbiBoZWlnaHQgYXMgYSBmdW5jdGlvbiBvZiB3ZWlnaHQsICgyKSB0aGUgOTclIGludGVydmFsIGZvciB0aGUgbWVhbiwgYW5kCigzKSB0aGUgOTclIGludGVydmFsIGZvciBwcmVkaWN0ZWQgaGVpZ2h0cy4KCiMjNEg0LiAKUGxvdCB0aGUgcHJpb3IgcHJlZGljdGl2ZSBkaXN0cmlidXRpb24gZm9yIHRoZSBwb2x5bm9taWFsIHJlZ3Jlc3Npb24gbW9kZWwgaW4gdGhlIGNoYXB0ZXIuIFlvdQpjYW4gbW9kaWZ5IHRoZSBjb2RlIHRoYXQgcGxvdHMgdGhlIGxpbmVhciByZWdyZXNzaW9uIHByaW9yIHByZWRpY3RpdmUgZGlzdHJpYnV0aW9uLiBDYW4geW91IG1vZGlmeSB0aGUKcHJpb3IgZGlzdHJpYnV0aW9ucyBvZiDOsSwgzrIxLCBhbmQgzrIyIHNvIHRoYXQgdGhlIHByaW9yIHByZWRpY3Rpb25zIHN0YXkgd2l0aGluIHRoZSBiaW9sb2dpY2FsbHkgcmVhc29uYWJsZQpvdXRjb21lIHNwYWNlPyBUaGF0IGlzIHRvIHNheTogRG8gbm90IHRyeSB0byBmaXQgdGhlIGRhdGEgYnkgaGFuZC4gQnV0IGRvIHRyeSB0byBrZWVwIHRoZSBjdXJ2ZXMKY29uc2lzdGVudCB3aXRoIHdoYXQgeW91IGtub3cgYWJvdXQgaGVpZ2h0IGFuZCB3ZWlnaHQsIGJlZm9yZSBzZWVpbmcgdGhlc2UgZXhhY3QgZGF0YS4K</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ2hhcHRlciA0IHByYWN0aWNlcyIKb3V0cHV0OiBodG1sX25vdGVib29rCi0tLQoKI0Vhc3kuCiMjNEUxLiAKSW4gdGhlIG1vZGVsIGRlZmluaXRpb24gYmVsb3csIHdoaWNoIGxpbmUgaXMgdGhlIGxpa2VsaWhvb2Q/CiQkeWkg4oi8IE5vcm1hbCjOvCwgz4MpJCQKJCTOvCDiiLwgTm9ybWFsKDAsIDEwKSQkCiQkz4Mg4oi8IEV4cG9uZW50aWFsKDEpJCQKCiMjNEUyLiAKSW4gdGhlIG1vZGVsIGRlZmluaXRpb24ganVzdCBhYm92ZSwgaG93IG1hbnkgcGFyYW1ldGVycyBhcmUgaW4gdGhlIHBvc3RlcmlvciBkaXN0cmlidXRpb24/CgojIzRFMy4gClVzaW5nIHRoZSBtb2RlbCBkZWZpbml0aW9uIGFib3ZlLCB3cml0ZSBkb3duIHRoZSBhcHByb3ByaWF0ZSBmb3JtIG9mIEJheWVz4oCZIHRoZW9yZW0gdGhhdAppbmNsdWRlcyB0aGUgcHJvcGVyIGxpa2VsaWhvb2QgYW5kIHByaW9ycy4KCiMjNEU0LiAKSW4gdGhlIG1vZGVsIGRlZmluaXRpb24gYmVsb3csIHdoaWNoIGxpbmUgaXMgdGhlIGxpbmVhciBtb2RlbD8KJCR5aSDiiLwgTm9ybWFsKM68LCDPgykkJAokJM68aSA9IM6xICsgzrJ4aSQkCiQkzrEg4oi8IE5vcm1hbCgwLCAxMCkkJAokJM6yIOKIvCBOb3JtYWwoMCwgMSkkJAokJM+DIOKIvCBFeHBvbmVudGlhbCgyKSQkCgojIzRFNS4gCkluIHRoZSBtb2RlbCBkZWZpbml0aW9uIGp1c3QgYWJvdmUsIGhvdyBtYW55IHBhcmFtZXRlcnMgYXJlIGluIHRoZSBwb3N0ZXJpb3IgZGlzdHJpYnV0aW9uPwoKI01lZGl1bS4KIyM0TTEuIApGb3IgdGhlIG1vZGVsIGRlZmluaXRpb24gYmVsb3csIHNpbXVsYXRlIG9ic2VydmVkIHkgdmFsdWVzIGZyb20gdGhlIHByaW9yIChub3QgdGhlIHBvc3RlcmlvcikuCiQkeWkg4oi8IE5vcm1hbCjOvCwgz4MpJCQKJCTOvCDiiLwgTm9ybWFsKDAsIDEwKSQkCiQkz4Mg4oi8IEV4cG9uZW50aWFsKDEpJCQKCiMjNE0yLiAKVHJhbnNsYXRlIHRoZSBtb2RlbCBqdXN0IGFib3ZlIGludG8gYSBxdWFwIGZvcm11bGEuCgojIzRNMy4gClRyYW5zbGF0ZSB0aGUgcXVhcCBtb2RlbCBmb3JtdWxhIGJlbG93IGludG8gYSBtYXRoZW1hdGljYWwgbW9kZWwgZGVmaW5pdGlvbi4KYGBge3J9CmZsaXN0IDwtIGFsaXN0KAp5IH4gZG5vcm0oIG11ICwgc2lnbWEgKSwKbXUgPC0gYSArIGIqeCwKYSB+IGRub3JtKCAwICwgMTAgKSwKYiB+IGR1bmlmKCAwICwgMSApLApzaWdtYSB+IGRleHAoIDEgKQopCmBgYAoKIyM0TTQuIApBIHNhbXBsZSBvZiBzdHVkZW50cyBpcyBtZWFzdXJlZCBmb3IgaGVpZ2h0IGVhY2ggeWVhciBmb3IgMyB5ZWFycy4gQWZ0ZXIgdGhlIHRoaXJkIHllYXIsIHlvdSB3YW50CnRvIGZpdCBhIGxpbmVhciByZWdyZXNzaW9uIHByZWRpY3RpbmcgaGVpZ2h0IHVzaW5nIHllYXIgYXMgYSBwcmVkaWN0b3IuIFdyaXRlIGRvd24gdGhlIG1hdGhlbWF0aWNhbAptb2RlbCBkZWZpbml0aW9uIGZvciB0aGlzIHJlZ3Jlc3Npb24sIHVzaW5nIGFueSB2YXJpYWJsZSBuYW1lcyBhbmQgcHJpb3JzIHlvdSBjaG9vc2UuIEJlIHByZXBhcmVkIHRvCmRlZmVuZCB5b3VyIGNob2ljZSBvZiBwcmlvcnMuCgojIzRNNS4gCk5vdyBzdXBwb3NlIEkgcmVtaW5kIHlvdSB0aGF0IGV2ZXJ5IHN0dWRlbnQgZ290IHRhbGxlciBlYWNoIHllYXIuIERvZXMgdGhpcyBpbmZvcm1hdGlvbiBsZWFkCnlvdSB0byBjaGFuZ2UgeW91ciBjaG9pY2Ugb2YgcHJpb3JzPyBIb3c/CgojIzRNNi4gCk5vdyBzdXBwb3NlIEkgdGVsbCB5b3UgdGhhdCB0aGUgdmFyaWFuY2UgYW1vbmcgaGVpZ2h0cyBmb3Igc3R1ZGVudHMgb2YgdGhlIHNhbWUgYWdlIGlzIG5ldmVyCm1vcmUgdGhhbiA2NGNtLiBIb3cgZG9lcyB0aGlzIGxlYWQgeW91IHRvIHJldmlzZSB5b3VyIHByaW9ycz8KCiNIYXJkLgojIzRIMS4gClRoZSB3ZWlnaHRzIGxpc3RlZCBiZWxvdyB3ZXJlIHJlY29yZGVkIGluIHRoZSAhS3VuZyBjZW5zdXMsIGJ1dCBoZWlnaHRzIHdlcmUgbm90IHJlY29yZGVkIGZvcgp0aGVzZSBpbmRpdmlkdWFscy4gUHJvdmlkZSBwcmVkaWN0ZWQgaGVpZ2h0cyBhbmQgODklIGludGVydmFscyBmb3IgZWFjaCBvZiB0aGVzZSBpbmRpdmlkdWFscy4gVGhhdCBpcywKZmlsbCBpbiB0aGUgdGFibGUgYmVsb3csIHVzaW5nIG1vZGVsLWJhc2VkIHByZWRpY3Rpb25zLgooc2VlIHBpYyBvbiBwZy4gMTI0KQoKIyM0SDIuIApTZWxlY3Qgb3V0IGFsbCB0aGUgcm93cyBpbiB0aGUgSG93ZWxsMSBkYXRhIHdpdGggYWdlcyBiZWxvdyAxOCB5ZWFycyBvZiBhZ2UuIElmIHlvdSBkbyBpdCByaWdodCwKeW91IHNob3VsZCBlbmQgdXAgd2l0aCBhIG5ldyBkYXRhIGZyYW1lIHdpdGggMTkyIHJvd3MgaW4gaXQuCihhKSBGaXQgYSBsaW5lYXIgcmVncmVzc2lvbiB0byB0aGVzZSBkYXRhLCB1c2luZyBxdWFwLiBQcmVzZW50IGFuZCBpbnRlcnByZXQgdGhlIGVzdGltYXRlcy4gRm9yCmV2ZXJ5IDEwIHVuaXRzIG9mIGluY3JlYXNlIGluIHdlaWdodCwgaG93IG11Y2ggdGFsbGVyIGRvZXMgdGhlIG1vZGVsIHByZWRpY3QgYSBjaGlsZCBnZXRzPwooYikgUGxvdCB0aGUgcmF3IGRhdGEsIHdpdGggaGVpZ2h0IG9uIHRoZSB2ZXJ0aWNhbCBheGlzIGFuZCB3ZWlnaHQgb24gdGhlIGhvcml6b250YWwgYXhpcy4gU3VwZXJpbXBvc2UKdGhlIE1BUCByZWdyZXNzaW9uIGxpbmUgYW5kIDg5JSBpbnRlcnZhbCBmb3IgdGhlIG1lYW4uIEFsc28gc3VwZXJpbXBvc2UgdGhlIDg5JSBpbnRlcnZhbApmb3IgcHJlZGljdGVkIGhlaWdodHMuCihjKSBXaGF0IGFzcGVjdHMgb2YgdGhlIG1vZGVsIGZpdCBjb25jZXJuIHlvdT8gRGVzY3JpYmUgdGhlIGtpbmRzIG9mIGFzc3VtcHRpb25zIHlvdSB3b3VsZApjaGFuZ2UsIGlmIGFueSwgdG8gaW1wcm92ZSB0aGUgbW9kZWwuIFlvdSBkb27igJl0IGhhdmUgdG8gd3JpdGUgYW55IG5ldyBjb2RlLiBKdXN0IGV4cGxhaW4gd2hhdCB0aGUKbW9kZWwgYXBwZWFycyB0byBiZSBkb2luZyBhIGJhZCBqb2Igb2YsIGFuZCB3aGF0IHlvdSBoeXBvdGhlc2l6ZSB3b3VsZCBiZSBhIGJldHRlciBtb2RlbC4KCiMjNEgzLiAKU3VwcG9zZSBhIGNvbGxlYWd1ZSBvZiB5b3Vycywgd2hvIHdvcmtzIG9uIGFsbG9tZXRyeSwgZ2xhbmNlcyBhdCB0aGUgcHJhY3RpY2UgcHJvYmxlbXMganVzdAphYm92ZS4gWW91ciBjb2xsZWFndWUgZXhjbGFpbXMsIOKAnFRoYXTigJlzIHNpbGx5LiBFdmVyeW9uZSBrbm93cyB0aGF0IGl04oCZcyBvbmx5IHRoZSBsb2dhcml0aG0gb2YgYm9keQp3ZWlnaHQgdGhhdCBzY2FsZXMgd2l0aCBoZWlnaHQh4oCdIExldOKAmXMgdGFrZSB5b3VyIGNvbGxlYWd1ZeKAmXMgYWR2aWNlIGFuZCBzZWUgd2hhdCBoYXBwZW5zLgooYSkgTW9kZWwgdGhlIHJlbGF0aW9uc2hpcCBiZXR3ZWVuIGhlaWdodCAoY20pIGFuZCB0aGUgbmF0dXJhbCBsb2dhcml0aG0gb2Ygd2VpZ2h0IChsb2cta2cpLiBVc2UKdGhlIGVudGlyZSBIb3dlbGwxIGRhdGEgZnJhbWUsIGFsbCA1NDQgcm93cywgYWR1bHRzIGFuZCBub24tYWR1bHRzLiBGaXQgdGhpcyBtb2RlbCwgdXNpbmcgcXVhZHJhdGljCmFwcHJveGltYXRpb246CgokJGhpIOKIvCBOb3JtYWwozrxpLCDPgykkJAokJM68aSA9IM6xICsgzrIgbG9nKHdpKSQkCiQkzrEg4oi8IE5vcm1hbCgxNzgsIDIwKSQkCiQkzrIg4oi8IExvZyDiiJIgTm9ybWFsKDAsIDEpJCQKJCTPgyDiiLwgVW5pZm9ybSgwLCA1MCkkJAoKd2hlcmUgaGkgaXMgdGhlIGhlaWdodCBvZiBpbmRpdmlkdWFsIGkgYW5kIHdpIGlzIHRoZSB3ZWlnaHQgKGluIGtnKSBvZiBpbmRpdmlkdWFsIGkuIFRoZSBmdW5jdGlvbiBmb3IKY29tcHV0aW5nIGEgbmF0dXJhbCBsb2cgaW4gUiBpcyBqdXN0IGxvZy4gQ2FuIHlvdSBpbnRlcnByZXQgdGhlIHJlc3VsdGluZyBlc3RpbWF0ZXM/CihiKSBCZWdpbiB3aXRoIHRoaXMgcGxvdDoKCgpgYGB7cn0KcGxvdCggaGVpZ2h0IH4gd2VpZ2h0ICwgZGF0YT1Ib3dlbGwxICwKY29sPWNvbC5hbHBoYShyYW5naTIsMC40KSApCmBgYAoKVGhlbiB1c2Ugc2FtcGxlcyBmcm9tIHRoZSBxdWFkcmF0aWMgYXBwcm94aW1hdGUgcG9zdGVyaW9yIG9mIHRoZSBtb2RlbCBpbiAoYSkgdG8gc3VwZXJpbXBvc2Ugb24KdGhlIHBsb3Q6ICgxKSB0aGUgcHJlZGljdGVkIG1lYW4gaGVpZ2h0IGFzIGEgZnVuY3Rpb24gb2Ygd2VpZ2h0LCAoMikgdGhlIDk3JSBpbnRlcnZhbCBmb3IgdGhlIG1lYW4sIGFuZAooMykgdGhlIDk3JSBpbnRlcnZhbCBmb3IgcHJlZGljdGVkIGhlaWdodHMuCgojIzRINC4gClBsb3QgdGhlIHByaW9yIHByZWRpY3RpdmUgZGlzdHJpYnV0aW9uIGZvciB0aGUgcG9seW5vbWlhbCByZWdyZXNzaW9uIG1vZGVsIGluIHRoZSBjaGFwdGVyLiBZb3UKY2FuIG1vZGlmeSB0aGUgY29kZSB0aGF0IHBsb3RzIHRoZSBsaW5lYXIgcmVncmVzc2lvbiBwcmlvciBwcmVkaWN0aXZlIGRpc3RyaWJ1dGlvbi4gQ2FuIHlvdSBtb2RpZnkgdGhlCnByaW9yIGRpc3RyaWJ1dGlvbnMgb2YgzrEsIM6yMSwgYW5kIM6yMiBzbyB0aGF0IHRoZSBwcmlvciBwcmVkaWN0aW9ucyBzdGF5IHdpdGhpbiB0aGUgYmlvbG9naWNhbGx5IHJlYXNvbmFibGUKb3V0Y29tZSBzcGFjZT8gVGhhdCBpcyB0byBzYXk6IERvIG5vdCB0cnkgdG8gZml0IHRoZSBkYXRhIGJ5IGhhbmQuIEJ1dCBkbyB0cnkgdG8ga2VlcCB0aGUgY3VydmVzCmNvbnNpc3RlbnQgd2l0aCB3aGF0IHlvdSBrbm93IGFib3V0IGhlaWdodCBhbmQgd2VpZ2h0LCBiZWZvcmUgc2VlaW5nIHRoZXNlIGV4YWN0IGRhdGEuCg==</div>
 
 
 

@@ -3,8 +3,6 @@ title: "Chapter 4 practices"
 output: html_notebook
 ---
 
-
-
 #Easy.
 ##4E1. 
 In the model definition below, which line is the likelihood?
